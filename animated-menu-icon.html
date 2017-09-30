@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Animated Menu Icon</title>
+    <link rel="stylesheet" href="animated-menu-icon.css"/>
+</head>
+<body>
+    <div class="icon" onclick="toggleClass(this, 'change')">
+        <div class="bar bar1"></div>
+        <div class="bar bar2"></div>
+        <div class="bar bar3"></div>
+    </div>
+    <script>
+        function toggleClass(myElement, myClass){
+            myElement.classList.toggle(myClass);
+        }
+    </script>
+</body>
+</html>
