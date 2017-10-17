@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Stroke</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Courgette|Poppins:400,800');
+            
+            body{
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+            }
+            #content{
+                height: 100%;
+                background-color: red;
+            }
+            #strokeText{
+                font-family: 'Poppins', sans-serif, monospace;
+                position: absolute;
+                width: 650px;
+                height: 300px;
+                top: 50%;
+                left: 50%;
+                margin-top: -150px;
+                margin-left: -325px;
+                text-align: center;
+                background: rgba(0,0,0, 0.1);
+                border-radius: 5px;
+                color: rgba(0,0,0, 0.7);
+            }
+            #strokeText{
+                font-size: 18px;
+                
+            }
+            #zombies{
+                font-size: 150px;
+                font-weight: 800;
+            }
+            #creator{
+                font-family: 'Poppins', sans-serif;
+                position: absolute;
+                top: 93%;
+                left: 80%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div id="strokeText"><div id="zombies">0</div> people have died due to strokes since this page was opened.</div>
+            <div id="creator">Created by Asm Goni 2017</div>
+        </div>
+        <script>
+            var count = 0;
+            var dead = document.getElementById("zombies");
+            var rgb1 = [192,36,37];
+            var rgb2 = [240,203,53];
+            var t, k, colour, cssColour, tmp;
+            var startTime = performance.now();
+            var endTime =  performance.now() + 5000;  // in seconds
+            k = 1;
+            
+            setInterval(function(){
+                t = (performance.now() - startTime) / (endTime - startTime);
+                t = t > 1 ? 0: t;
+                if(t === 0){
+//                    tmp = rgb1;
+//                    rgb1 = rgb2;
+//                    rgb2 = tmp; //swaps rgb1 and rgb2
+                    startTime = performance.now();
+                    endTime =  performance.now() + 5000;  // in ten seconds
+                }
+                colour = [
+                    ((rgb2[0] - rgb1[0]) * t + rgb1[0]) | 0, // the | 0  floors the value
+                    ((rgb2[1] - rgb1[1]) * t + rgb1[1]) | 0,
+                    ((rgb2[2] - rgb1[2]) * t + rgb1[2]) | 0,
+                ];
+                cssColour = "rgb(" + colour[0] + "," + colour[1] + "," + colour[2] + ")";
+                document.getElementById("content").style.backgroundColor = cssColour;
+            }, 1000/30);
+            
+            setInterval(function(){
+                count++;
+                dead.textContent = count;
+            }, 5000);
+        </script>
+    </body>
+</html>
