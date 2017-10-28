@@ -1,172 +1,68 @@
-@import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700');
 
-.main-nav{
-    width: 100%;
-    height: 70px;
-    background: rgba(5,10,20,0.9);
-    position: relative;
-    transition: 500ms;
-}
-
-#logo{
-    width: 27px;
-    position: absolute;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    cursor: pointer;
-    filter: opacity(.7);
-    transition: 500ms;
-}
-
-#logo:hover{
-    filter: opacity(1);
-}
-
-body{
-    background: rgba(5,10,20,1);
-    color: white;
-}
-
-.content{
-    width: 100%;
-    height: auto;
-    margin: 50px auto; 
-    font-family: "Inconsolata", monospace, serif;
-    font-weight: 400;
-    color: rgb(0,180,255);
-/*    background: red;*/
-}
-.content table{
-    margin: 0 auto;
-    margin-top: 50px;
-    text-align: center;
-}
-
-.content-info{
-    height: 100px;
+* {
     margin: 0;
     padding: 0;
-    font-family: 'Inconsolata', monospace, serif;
 }
 
-.content-info-pun{text-align: center; font-size: 14px;}
-.content-credit{text-align: center; font-size: 12px; margin-top: -8px;}
-
-.something input[type="number"]{
-    border: 1px solid rgba(0,255,255,0.1);
-    background: rgba(0,255,255,0.05);
-    height: 26px;
-    width: 175px;
-    color: rgba(0,255,255,0.7);
-    padding-left: 10px;
-    font-family: 'Inconsolata', monospace, serif;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.something input[type="number"]::placeholder{
-    font-family: 'Inconsolata', monospace, serif;
-    color: rgba(0,255,255,0.3);
-}
-
-.something input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    display: block;
-    width: 8px;
-    color: #333;
-    text-align: center;
-    position: relative;
-    cursor: pointer;
-}
-
-.something input[type="number"]:hover::-webkit-inner-spin-button { 
-    background: url('http://i.stack.imgur.com/YYySO.png') no-repeat 50% 50%;  
-    width: 12px;
-    height: 12px;
-    padding: 4px;
-    position: relative;
-    right: 4px;
-    border-radius: 28px;
-}
-
-.something input[type="submit"]{
-    height: 30px;
-    border: 1px solid rgba(0,255,255,0.2);
-    background: rgba(0,255,255,0.1);
-    transition: 500ms;
-    cursor: pointer;
-    width: 60px;
-    font-family: 'Inconsolota', monospace, serif;
-    color: rgba(0,255,255,0.6);
+body, .body-wrapper{
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5,10,20,1) url("pixel.png") repeat;
     
 }
 
-.something input[type="submit"]:hover{
-    background: rgba(0,255,255,0.3);
-    border: 1px solid rgba(0,255,255,0.3);
-    color: rgba(0,255,255,1);
-}
-
-.something {
-    position: absolute;
-    left: 50%;
-    margin-left: -120px;
-}
-
-.content td, .content th{
-    width: auto;
-    padding-left: 20px;
-}
-
-.content th{
-    font-weight: 700;
-    border-bottom: 2px solid rgba(0,180,255,0.7);
-}
-
-.content tr:hover{
-    background: rgba(0,180,255,0.02);
-}
-
-.another-thing input[type="text"]{
-    border: 1px solid rgba(0,255,255,0.1);
-    background: rgba(0,255,255,0.05);
-    height: 26px;
-    width: 225px;
-    color: rgba(0,255,255,0.7);
-    padding-left: 10px;
-    font-family: 'Inconsolata', monospace, serif;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.another-thing input[type="text"]::placeholder{
-    font-family: 'Inconsolata', monospace, serif;
-    color: rgba(0,255,255,0.3);
-}
-
-.another-thing input[type="submit"]{
-    height: 30px;
-    border: 1px solid rgba(0,255,255,0.2);
-    background: rgba(0,255,255,0.1);
-    transition: 500ms;
+#body-logo img{
     cursor: pointer;
-    width: 60px;
-    font-family: 'Inconsolota', monospace, serif;
-    color: rgba(0,255,255,0.6);
-}
-
-.another-thing input[type="submit"]:hover{
-    background: rgba(0,255,255,0.3);
-    border: 1px solid rgba(0,255,255,0.3);
-    color: rgba(0,255,255,1);
-}
-
-.another-thing{
     position: absolute;
+    width: 150px;
     left: 50%;
-    margin-left: -170px;
-    margin-top: 40px;
+    margin-left: -75px;
+    top: 40%;
+    margin-top: -75px;
+    -webkit-filter: drop-shadow(0px 0px 2px rgba(0,255,255,0.5)) opacity(.7);
+    filter: drop-shadow(0px 0px 2px rgba(0,255,255,0.5)) opacity(.7);
+    transition: 500ms;
+}
+
+#body-logo img:hover{
+    -webkit-filter: drop-shadow(0px 0px 4px rgba(0,255,255, 0.5)) opacity(1);
+    filter: drop-shadow(0px 0px 4px rgba(0,255,255, 0.5)) opacity(1);
+}
+
+.body-wrapper  ul{
+    list-style-type: none;
+    font-family: 'Source Code Pro', monospace, sans-serif;
+    font-size: 30px;
+}
+
+.body-wrapper li{
+    display: inline;
+    float: left;
+}
+
+.body-wrapper li a {
+    display: block;
+    color: rgba(0,255,255,0.6);
+    text-align: center;
+    padding: 25px 50px;
+    margin-right: 10px;
+    text-decoration: none;
+    perspective: 500px;    
+    background: rgba(0,255,255,0.05);
+    transform: skewX(-20deg);
+}
+
+.body-wrapper nav{
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    margin-left: -345px;
+}
+
+.body-wrapper li a:hover{
+    color: rgba(0,255,255,1);
+    background: rgba(0,255,255,0.10);
+    border-bottom: 2px solid rgba(0,255,255,0.5);
+    
 }
