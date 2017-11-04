@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steiner Ellipses</title>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas>Your browser does not support canvas.</canvas>
+    <script>
+    window.onload = function(){
+        var canvas  = document.querySelector("canvas"),
+            c       = canvas.getContext("2d"),
+            mouse = {
+                x: undefined,
+                y: undefined
+            },
+            particles = [],
+            colors = [
+                "rgb( 0, 255, 255)",
+                "#a4bcbc",
+                "#98e2e1",
+                "#da2865",
+                "#17a5a3"
+            ];
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        window.addEventListener("mousemove", function(event){
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+        
+        {
+            function randIntFromRange(min, max){
+                return Math.floor(Math.random() * (max-min + 1) + min);
+            }
+        }
+        
+        function init(){
+            for(let i = 0; i < 100; i++){
+                particles.push(new Particle(
+                    canvas.width/2, canvas.height/2, 
+                    Math.random() * 2, colors[Math.floor(Math.random() * colors.length)]))
+            }
+        }
+        
+        function Particle(x, y, radius, color){
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = color;
+            this.radians = Math.random() * Math.PI * 2;
+            this.velocity = 0.05;
+            this.distanceFromCenter = randIntFromRange(50, 125);
+            this.lastMouse = {x: mouse.x, 
+                              y: mouse.y};
+            
+            this.draw = function(lastPoint){
+                c.beginPath();
+                c.strokeStyle = this.color;
+                c.lineWidth = this.radius;
+                c.moveTo(lastPoint.x, lastPoint.y);
+                c.lineTo(this.x, this.y);
+                c.stroke();
+                c.closePath();
+            }
+            
+            this.update = function(){
+                var lastPoint = {x: this.x, y: this.y};
+    
+                this.radians += this.velocity;
+                
+                this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.05;
+                this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.05;
+            
+                this.x = mouse.x + Math.cos(this.radians) * this.distanceFromCenter;
+                this.y = mouse.y + Math.sin(this.radians) * this.distanceFromCenter;
+                
+                this.draw(lastPoint);
+            }
+        }
+        
+        function animate(){
+            window.requestAnimationFrame(animate);
+            
+            c.fillStyle = 'rgba( 255, 255, 255, 0.05)';
+            c.fillRect( 0, 0, canvas.width, canvas.height);
+            
+            particles.forEach(function(particle){
+                particle.update();
+            });
+
+        }
+        
+        init();
+        animate();
+    } 
+    </script>
+</body>
+</html>
